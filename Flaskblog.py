@@ -6,7 +6,7 @@ posts = [
    {
    		'author': 'Herve Gaël',
    		'title': 'Histoire Blog',
-   		'content' : 'First post content'
+   		'content' : 'First post content',
    		'date_posted' : 'Juillet 2018'
 
    },
@@ -14,7 +14,7 @@ posts = [
    {
    		'author': 'Isabelle',
    		'title': 'Histoire bretonne',
-   		'content' : 'Second Post'
+   		'content' : 'Second Post',
    		'date_posted' : 'Juillet 2018'
 
    }
@@ -23,12 +23,12 @@ posts = [
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("home.html")
+    return render_template("home.html", posts=posts)
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    return render_template("about.html",title='About')
 
 
 if __name__ == '__main__':

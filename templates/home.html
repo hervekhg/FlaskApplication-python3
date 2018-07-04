@@ -1,14 +1,9 @@
-<!doctype html>
+{% extends "layout.html" %}
+{% block content %}
+	 {% for post in posts %}
+	    <h1> {{ post.title }}</h1>
+	    <p> By {{ post.author }} on {{ post.date_posted }}</p>
+	    <p> {{ post.content }}
 
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-
-  <title>Home Flask Tutorial </title>
-
-</head>
-
-<body>
-	 <h1> Home </h1>
-</body>
-</html>
+	 {% endfor %}
+{% endblock content %}
