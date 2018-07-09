@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        echo 'Print du build'
+        echo 'Print Build'
       }
     }
     stage('Deloy') {
