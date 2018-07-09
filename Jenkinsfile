@@ -8,7 +8,6 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'echo '
         echo 'Print du build'
       }
     }
