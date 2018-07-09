@@ -64,7 +64,7 @@ def login():
         next_page = request.args.get('next')
         return redirect(next_page) if next_page else redirect(url_for('home'))
       else:
-        flash('Login unsuccesful. Please check username and  password', 'danger')
+        flash('Login unsuccesful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
 
@@ -76,4 +76,5 @@ def logout():
 @app.route("/account")
 @login_required
 def account():
-	return render_template('Account.html', title='Account')
+	image_file = url_for('static',filename='profile_pics/' + current_user.image_file)
+	return render_template('Account.html', title='Account', image_file=image_file)
