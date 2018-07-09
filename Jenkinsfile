@@ -12,10 +12,10 @@ pipeline {
         echo 'Print du build'
       }
     }
-    stage('') {
+    stage('Deloy') {
       steps {
-        echo 'Deploy'
-        echo 'Deploy'
+        echo 'Start deploy'
+        echo 'End Deploy'
       }
     }
   }
