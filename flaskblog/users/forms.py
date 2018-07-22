@@ -1,9 +1,10 @@
 from flask_wtf import FlaskForm
-from flask_login import current_user
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from flaskblog.models import User 
+from flask_login import current_user
+from flaskblog.models import User
+
 
 class RegistrationForm(FlaskForm):
 	"""docstring for ClassName"""
@@ -65,20 +66,6 @@ class UpdateAccountForm(FlaskForm):
 			if user:
 				raise ValidationError('That email is already taken. Please choose another')
 
-
-class PostForm(FlaskForm):
-	title = StringField('Title',validators=[DataRequired()])
-	content = TextAreaField('Content',validators=[DataRequired()])
-	submit = SubmitField('Post')
-
-	def validate_title(self, title):
-		if len(title.data) > 50:
-			raise ValidationError('The title must be less than 50 Characters')
-
-	def validate_content(self, content):
-		if len(content.data) > 500:
-			raise ValidationError('The content must be less than 500 Characters')
-
 class RequestResetForm(FlaskForm):
 	email = StringField('Email', validators=[DataRequired(),Email()])
 	submit = SubmitField('Request Password Reset')
@@ -94,4 +81,3 @@ class ResetPasswordForm(FlaskForm):
 	confirm_password = PasswordField('Confirm Password', 
 		                             validators=[DataRequired(), EqualTo('password')])
 	submit = SubmitField('Reset Password')
-
