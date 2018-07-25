@@ -7,4 +7,3 @@ Flask_Bcrypt==0.7.1
 Flask_Mail==0.9.1
 WTForms==2.2.1
 Pillow==5.2.0
-secrets==1.0.2
