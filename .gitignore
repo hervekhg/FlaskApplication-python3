@@ -5,3 +5,4 @@ flaskblog/site.db
 
 # Os generate file
 .DS_Store
+*.pyc
