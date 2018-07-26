@@ -8,14 +8,14 @@
 
 gunicorn="/usr/local/bin/gunicorn"
 prog="237story.entreprendre.cm"
-PROJECT_HOME="/appli/$prog"
+237STORY_HOME="/appli/$prog"
 pid="/var/lock/$prog"
 
 RETVAL=0
 
 start() {
     echo -n $"Starting $prog:"
-    cd $PROJECT_HOME
+    cd $237STORY_HOME
     $gunicorn --daemon --pid=$pid run:app
     RETVAL=$?
     cd -
