@@ -1,0 +1,7 @@
+# Ignore database
+flaskblog/site.db
+# Ignore log
+*.log
+
+# Os generate file
+.DS_Store
