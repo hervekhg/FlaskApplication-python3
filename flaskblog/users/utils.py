@@ -30,13 +30,13 @@ def save_picture(form_picture):
     return picture_fn
 
 
-def send_reset_email(user):
+def send_reset_email(user,emailsender):
     token = user.get_reset_token()
-    msg = Message('Password Reset Request',
-                  sender='noreply@demo.com',
+    msg = Message('237story - Password Reset Request',
+                  sender=emailsender,
                   recipients=[user.email])
     msg.body = '''To reset your password, visit the following link:
-{%s}
+%s
 If you did not make this request then simply ignore this email and no changes will be made.
 ''' %(url_for('users.reset_token', token=token, _external=True))
     mail.send(msg)
