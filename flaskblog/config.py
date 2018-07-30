@@ -5,7 +5,7 @@ class Config:
 	SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
 	#MAIL_SERVER = 'smtp.googlemail.com'
 	#MAIL_PORT = 587
-	EMAIL_SENDER = 'hervekhg@gmail.com'
+	EMAIL_SENDER = 'contact@entreprendre.cm'
 	MAIL_SERVER = 'localhost'
 	MAIL_PORT = 25
 	MAIL_USE_TLS = True
