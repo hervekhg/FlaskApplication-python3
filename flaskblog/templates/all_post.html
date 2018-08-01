@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+        <article class="media content-section bg-light">
+          <div class="media-body">
+          <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for post in posts %}
+                  <tr>
+                    <th scope="row">{{ post.id }}</th>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.date_posted }}</td>
+                    <td>{{ post.content[:20] }}</td>
+                    <td>Update</td>
+                    <td>Delete</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </article>
+{% endblock content %}

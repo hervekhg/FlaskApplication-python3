@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+        <article class="media content-section bg-light">
+          <div class="media-body">
+          <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for role in roles %}
+                  <tr>
+                    <th scope="row">{{ role.id }}</th>
+                    <td>{{ role.rolename }}</td>
+                    <td>{{ role.description }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </article>
+{% endblock content %}

@@ -22,6 +22,13 @@ def new_post():
                            form=form, legend='New Post')
 
 
+@posts.route("/admin/post/all", methods=['GET', 'POST'])
+@login_required
+def post_all():
+    posts = Post.query.all()
+    return render_template('all_post.html', posts=posts)
+
+
 @posts.route("/post/<int:post_id>")
 def post(post_id):
     post = Post.query.get_or_404(post_id)

@@ -14,9 +14,10 @@ class User(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(20), unique=True, nullable=False)
 	email = db.Column(db.String(120), unique=True, nullable=False)
-	image_file = db.Column(db.String(20),nullable=False,default='default.jpg')
+	image_file = db.Column(db.String(20),nullable=False,default='default.png')
 	password = db.Column(db.String(60),nullable=False)
 	posts = db.relationship('Post', backref='author', lazy=True)
+	roles = db.relationship('Role', backref='authorrole', lazy=True)
 
 	def __repr__(self):
 		return "User('%s', '%s', '%s')" %s(self.username, self.email, self.image_file)
@@ -44,3 +45,14 @@ class Post(db.Model):
 
 	def __repr__(self):
 		return "Post('%s', '%s')" %s(self.title, self.date_posted)
+
+class Role(db.Model):
+	id = db.Column(db.Integer,primary_key=True)
+	rolename = db.Column(db.String(20), unique=True, nullable=False)
+	description = db.Column(db.String(100), unique=True, nullable=False)
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+	def __repr__(self):
+		return "Role('%s', '%s')" %s(self.id, self.roles)
+
+

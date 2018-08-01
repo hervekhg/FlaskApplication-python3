@@ -51,3 +51,15 @@ def token_hex(nbytes=None):
     'f9bf78b9a18ce6d46a0cd2b0b86df9da'
     """
     return binascii.hexlify(token_bytes(nbytes)).decode('ascii')
+
+def token_bytes(nbytes=None):
+    """Return a random byte string containing *nbytes* bytes.
+    If *nbytes* is ``None`` or not supplied, a reasonable
+    default is used.
+    >>> token_bytes(16)  #doctest:+SKIP
+    b'\\xebr\\x17D*t\\xae\\xd4\\xe3S\\xb6\\xe2\\xebP1\\x8b'
+    """
+    if nbytes is None:
+        nbytes = DEFAULT_ENTROPY
+    return os.urandom(nbytes)
+
