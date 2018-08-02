@@ -1,0 +1,10 @@
+# Ignore database
+flaskblog/site.db
+# Ignore log
+*.log
+
+# Os generate file
+.DS_Store
+flaskblog/static/.DS_Store
+*.pyc
+flaskblog/__pycache__/*.pyc
