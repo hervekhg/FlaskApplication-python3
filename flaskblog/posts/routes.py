@@ -25,7 +25,9 @@ def new_post():
 @posts.route("/admin/post/all", methods=['GET', 'POST'])
 @login_required
 def post_all():
-    posts = Post.query.all()
+    #posts = Post.query.all()
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
     return render_template('all_post.html', posts=posts)
 
 
