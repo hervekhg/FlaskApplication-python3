@@ -8,3 +8,8 @@ flaskblog/site.db
 flaskblog/static/.DS_Store
 *.pyc
 flaskblog/__pycache__/*.pyc
+
+flaskblog/users/__pycache__
+flaskblog/posts/__pycache__
+flaskblog/main/__pycache__
+flaskblog/__pycache__
