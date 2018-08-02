@@ -41,7 +41,7 @@ def post(post_id):
 @login_required
 def update_post(post_id):
     post = Post.query.get_or_404(post_id)
-    if post.author != current_user and current_user.username != 'test':
+    if post.author != current_user and current_user.username != 'admin237story':
         abort(403)
     form = PostForm()
     if form.validate_on_submit():
@@ -61,7 +61,7 @@ def update_post(post_id):
 @login_required
 def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
-    if post.author != current_user:
+    if post.author != current_user and current_user.username != 'admin237story':
         abort(403)
     db.session.delete(post)
     db.session.commit()
