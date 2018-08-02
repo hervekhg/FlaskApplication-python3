@@ -70,8 +70,43 @@ def account():
 @users.route("/admin/user/all", methods=['GET', 'POST'])
 @login_required
 def user_all():
-    users = User.query.all()
+    #users = User.query.all()
+    page = request.args.get('page', 1, type=int)
+    users = User.query.order_by(User.id.desc()).paginate(page=page, per_page=5)
     return render_template('all_user.html', users=users)
+
+@users.route("/user/<int:user_id>/update", methods=['GET', 'POST'])
+@login_required
+def update_user(user_id):
+    user = User.query.get_or_404(user_id)
+    if current_user.username != 'admin237story':
+        abort(403)
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user.username = form.username.data
+        user.email = form.email.data
+        db.session.commit()
+        flash('Your user has been updated!', 'success')
+        return redirect(url_for('users.user_all', user_id=user.id))
+    elif request.method == 'GET':
+        form.username.data = user.username
+        form.email.data = user.email
+    return render_template('register.html', title='Update Account',
+                           form=form, legend='Update Account')
+
+@users.route("/user/<int:user_id>/delete", methods=['GET', 'POST'])
+@login_required
+def delete_user(user_id):
+    if current_user.username != 'admin237story':
+        abort(403)
+    user = User.query.get_or_404(user_id)
+    posts = Post.query.filter_by(author=user)
+    for post in posts:
+        db.session.delete(post)
+    db.session.delete(user)
+    db.session.commit()
+    flash('Your user has been deleted!', 'success')
+    return redirect(url_for('users.user_all'))
 
 
 @users.route("/user/<string:username>")
@@ -82,7 +117,6 @@ def user_posts(username):
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
     return render_template('user_posts.html', posts=posts, user=user)
-
 
 
 
