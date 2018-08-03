@@ -2,10 +2,10 @@ import os
 
 class Config:
 	SECRET_KEY = 'f334629b7e141f50f5edb664e038ccf4'
-	DB_HOST = 'localhost'
-	DB_USER = '237story'
-	DB_PASSWORD = '237story!'
-	DB_NAME = '237story'
+	DB_HOST = os.environ.get('DB_HOST')
+	DB_USER = os.environ.get('DB_USER')
+	DB_PASSWORD = os.environ.get('DB_PASSWORD')
+	DB_NAME = os.environ.get('DB_NAME')
 	SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://%s:%s@%s/%s' %(DB_USER, DB_PASSWORD, DB_HOST, DB_NAME)
 	#SQLALCHEMY_DATABASE_URI = 'sqlite:///site.db'
 
