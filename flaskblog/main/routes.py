@@ -14,3 +14,14 @@ def home():
 @main.route("/about")
 def about():
     return render_template('about.html', title='About')
+
+
+@main.route("/sitemap.xml")
+def sitemap_xml():
+    response= make_response(render_template("sitemap.xml"))
+    response.headers['Content-Type'] = 'application/xml'
+    return response
+
+@main.route("/robots.txt")
+def robots_txt():
+    return render_template("robots.txt")
