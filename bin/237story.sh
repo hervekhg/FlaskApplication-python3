@@ -9,6 +9,7 @@
 gunicorn="/usr/local/bin/gunicorn"
 prog="237story.entreprendre.cm"
 STORY_HOME="/appli/$prog/"
+LOG_FILE="/var/log/gunicorn/237story.log"
 pid="/var/lock/$prog"
 
 RETVAL=0
@@ -16,7 +17,7 @@ RETVAL=0
 start() {
     echo -n $"Starting $prog:"
     cd $STORY_HOME
-    $gunicorn --daemon --pid=$pid run:app
+    $gunicorn --daemon --pid=$pid --log-file=$LOG_FILE run:app
     RETVAL=$?
     cd -
     echo
