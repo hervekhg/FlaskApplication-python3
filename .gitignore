@@ -13,3 +13,5 @@ flaskblog/users/__pycache__
 flaskblog/posts/__pycache__
 flaskblog/main/__pycache__
 flaskblog/__pycache__
+
+flaskblog/migrations/

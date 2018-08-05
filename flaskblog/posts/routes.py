@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 from flaskblog import db
 from flaskblog.models import Post
 from flaskblog.posts.forms import PostForm
-from flaskblog.posts.utils import slugurl
+from flaskblog.posts.utils import slugify
 
 posts = Blueprint('posts',__name__)
 
@@ -15,6 +15,7 @@ def new_post():
     form = PostForm()
     if form.validate_on_submit():
         post = Post(title=form.title.data, content=form.content.data, author=current_user)
+        post.slug = slugify(form.title.data)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
@@ -32,10 +33,9 @@ def post_all():
     return render_template('all_post.html', posts=posts)
 
 
-@posts.route("/post/<int:post_id>")
-def post(post_id):
+@posts.route("/post/<int:post_id>/<slug>")
+def post(post_id, slug):
     post = Post.query.get_or_404(post_id)
-    print (slugurl(post.title))
     return render_template('post.html', title=post.title, post=post)
 
 
@@ -51,7 +51,7 @@ def update_post(post_id):
         post.content = form.content.data
         db.session.commit()
         flash('Your post has been updated!', 'success')
-        return redirect(url_for('posts.post', post_id=post.id))
+        return redirect(url_for('posts.post', post_id=post.id, slug=post.slug))
     elif request.method == 'GET':
         form.title.data = post.title
         form.content.data = post.content

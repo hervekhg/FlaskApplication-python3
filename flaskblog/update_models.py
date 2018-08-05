@@ -1,14 +1,35 @@
+####################################
+###
+### Update database schema
+###
+###################################
+
 from datetime import datetime
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from flaskblog import db, login_manager
+#from flaskblog import db, login_manager
 from flask import current_app
 from flask_login import UserMixin
 
 
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_script import Manager
+from flask_migrate import Migrate, MigrateCommand
 
-@login_manager.user_loader
-def load_user(user_id):
-	return User.query.get(int(user_id))
+app = Flask(__name__)
+
+DB_HOST = os.environ.get('DB_HOST')
+DB_USER = os.environ.get('DB_USER')
+DB_PASSWORD = os.environ.get('DB_PASSWORD')
+DB_NAME = os.environ.get('DB_NAME')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://%s:%s@%s/%s' %('DB_USER', 'DB_PASSWORD', 'DB_HOST', 'DB_NAME')
+
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+manager = Manager(app)
+manager.add_command('db', MigrateCommand)
+
 
 class User(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
@@ -56,4 +77,5 @@ class Role(db.Model):
 	def __repr__(self):
 		return "Role('%s', '%s')" %s(self.id, self.roles)
 
-
+if __name__ == '__main__':
+    manager.run()
