@@ -4,6 +4,7 @@ from flask_login import current_user, login_required
 from flaskblog import db
 from flaskblog.models import Post
 from flaskblog.posts.forms import PostForm
+from flaskblog.posts.utils import slugurl
 
 posts = Blueprint('posts',__name__)
 
@@ -34,6 +35,7 @@ def post_all():
 @posts.route("/post/<int:post_id>")
 def post(post_id):
     post = Post.query.get_or_404(post_id)
+    print (slugurl(post.title))
     return render_template('post.html', title=post.title, post=post)
 
 
