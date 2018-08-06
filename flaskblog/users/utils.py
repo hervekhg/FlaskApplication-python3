@@ -41,6 +41,21 @@ If you did not make this request then simply ignore this email and no changes wi
 ''' %(url_for('users.reset_token', token=token, _external=True))
     mail.send(msg)
 
+def send_newpostnotif_email(current_user,users,post,emailsender):
+    
+    for recipient_user in users:
+        username = current_user.username
+        msg = Message('237story [New Story] - ' + post.title,
+                      sender=emailsender,
+                      recipients=[recipient_user.email]) 
+        msg.body = '''Hello,
+    %s has published a new Story.
+    You could read it now : %s
+    ''' %(username, url_for('posts.post', post_id=post.id, slug=post.slug, _external=True))
+        
+        mail.send(msg)
+
+
 
 def token_hex(nbytes=None):
     """Return a random text string, in hexadecimal.
