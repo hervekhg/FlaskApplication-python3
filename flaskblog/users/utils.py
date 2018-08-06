@@ -1,6 +1,6 @@
 import os
 from PIL import Image
-from flask import url_for, current_app
+from flask import url_for, current_app, render_template
 from flask_mail import Message
 from flaskblog import mail, create_app
 
@@ -56,10 +56,12 @@ def send_newpostnotif_email(username,users,post,emailsender):
         msg = Message('237story [New Story] - ' + post.title,
                       sender=emailsender,
                       recipients=[recipient_user.email]) 
-        msg.body = '''Hello,
-    %s has published a new Story.
-    You could read it now : %s
-    ''' %(username, url_for('posts.post', post_id=post.id, slug=post.slug, _external=True))
+    #     msg.body = '''Hello,
+    # %s has published a new Story.
+    # You could read it now : %s
+    # ''' %(username, url_for('posts.post', post_id=post.id, slug=post.slug, _external=True))
+        msg.html = render_template('emails/post_email_notif.html',
+                                   post=post, username=username, user=recipient_user)
         thr = Thread(target=send_async_email, args=[app, msg])
         thr.start()
         #mail.send(msg)

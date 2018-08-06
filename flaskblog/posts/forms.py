@@ -8,7 +8,7 @@ class PostForm(FlaskForm):
 	submit = SubmitField('Post')
 
 	def validate_title(self, title):
-		if len(title.data) > 50:
+		if len(title.data) > 100:
 			raise ValidationError('The title must be less than 50 Characters')
 
 	def validate_content(self, content):
