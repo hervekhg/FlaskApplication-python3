@@ -7,6 +7,8 @@ from flaskblog.posts.forms import PostForm
 from flaskblog.posts.utils import slugify
 from flaskblog.users.utils import send_newpostnotif_email
 
+import threading
+
 posts = Blueprint('posts',__name__)
 
 
@@ -21,7 +23,9 @@ def new_post():
         # Send email notification to all users
         users = User.query.all()
         emailsender = current_app.config['EMAIL_SENDER']
-        send_newpostnotif_email(current_user,users,post,emailsender)
+        username = current_user.username
+        send_newpostnotif_email(username,users,post,emailsender)
+        
 
         db.session.add(post)
         db.session.commit()

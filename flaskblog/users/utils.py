@@ -2,7 +2,7 @@ import os
 from PIL import Image
 from flask import url_for, current_app
 from flask_mail import Message
-from flaskblog import mail
+from flaskblog import mail, create_app
 
 import base64
 import binascii
@@ -10,6 +10,8 @@ import os
 
 from hmac import compare_digest
 from random import SystemRandom
+
+from threading import Thread
 
 _sysrand = SystemRandom()
 
@@ -41,10 +43,16 @@ If you did not make this request then simply ignore this email and no changes wi
 ''' %(url_for('users.reset_token', token=token, _external=True))
     mail.send(msg)
 
-def send_newpostnotif_email(current_user,users,post,emailsender):
-    
+
+
+def send_async_email(app, msg):
+    with app.app_context():
+        mail.send(msg)
+
+def send_newpostnotif_email(username,users,post,emailsender):
+    app = create_app()
     for recipient_user in users:
-        username = current_user.username
+        #username = current_user.username
         msg = Message('237story [New Story] - ' + post.title,
                       sender=emailsender,
                       recipients=[recipient_user.email]) 
@@ -52,8 +60,9 @@ def send_newpostnotif_email(current_user,users,post,emailsender):
     %s has published a new Story.
     You could read it now : %s
     ''' %(username, url_for('posts.post', post_id=post.id, slug=post.slug, _external=True))
-        
-        mail.send(msg)
+        thr = Thread(target=send_async_email, args=[app, msg])
+        thr.start()
+        #mail.send(msg)
 
 
 
