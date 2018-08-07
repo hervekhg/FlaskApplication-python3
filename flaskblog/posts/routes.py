@@ -33,7 +33,7 @@ def new_post():
 
         return redirect(url_for('main.home'))
     return render_template('create_post.html', title='New Post',
-                           form=form, legend='New Post')
+                           form=form, legend='New Story')
 
 
 @posts.route("/admin/post/all", methods=['GET', 'POST'])
