@@ -71,7 +71,7 @@ def account():
 def user_all():
     #users = User.query.all()
     page = request.args.get('page', 1, type=int)
-    users = User.query.order_by(User.id.desc()).paginate(page=page, per_page=5)
+    users = User.query.order_by(User.id.desc()).paginate(page=page, per_page=20)
     return render_template('all_user.html', users=users)
 
 @users.route("/user/<int:user_id>/update", methods=['GET', 'POST'])
