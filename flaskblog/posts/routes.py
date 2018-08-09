@@ -26,11 +26,16 @@ def new_post():
         username = current_user.username
         send_newpostnotif_email(username,users,post,emailsender)
         
-
         db.session.add(post)
-        db.session.commit()
-        flash('Your post has been created!', 'success')
-
+        try:
+            db.session.commit()
+            flash('Your post has been created!', 'success')
+        except:
+            db.session.rollback()
+            raise
+        finally:
+            db.session.close()
+            
         return redirect(url_for('main.home'))
     return render_template('create_post.html', title='New Post',
                            form=form, legend='New Story')
