@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
+<meta id="post_id" data-post_id="{{ post.id }}">
+<meta id="nb_like" data-nb_like="{{ post.like_post }}">
+<meta id="nb_dislike" data-nb_dislike="{{ post.dislike_post }}">
   <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
     <div class="media-body">
@@ -17,6 +20,20 @@
       <p class="article-content">{{ post.content }}</p>
     </div>
   </article>
+
+  <!-- Add like and dislike button -->
+  <div class="container">
+    <a class="like">
+        <i class="fa fa-thumbs-o-up"> like</i>
+        <input class="qty1" name="qty1" readonly="readonly" type="text" value="{{ post.like_post }}" />
+    </a>
+    <a class="dislike">
+        <i class="fa fa-thumbs-o-down"> dislike</i>
+        <input class="qty2"  name="qty2" readonly="readonly" type="text" value=" {{ post.dislike_post }}" />
+    </a>
+  </div>
+  
+
   <!-- Modal -->
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -35,5 +52,52 @@
         </div>
       </div>
     </div>
+
+
   </div>
+    
+    
+ <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+ <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+ <script type="text/javascript">
+   
+   $(function () {
+      $(".like").click(function () {
+             var input = $(this).find('.qty1');
+             var post_id = $('#post_id').data("post_id");
+             var nb_like = $('#nb_like').data("nb_like")
+             input.val(parseInt(input.val())+ 1);
+             $.ajax({
+              url: '/post/like/' + post_id,
+              data: $('#post_id').serialize(),
+              type: 'POST',
+              success: function(response){
+                console.log("Nombre de like : " + nb_like);
+              },
+              error: function(error){
+                console.log(error);
+              }
+            });
+         });
+     $(".dislike").click(function () {
+         var input = $(this).find('.qty2');
+         var post_id = $('#post_id').data("post_id");
+         var nb_dislike = $('#nb_dislike').data("nb_dislike")
+         input.val(parseInt(input.val())+ 1);
+         $.ajax({
+              url: '/post/dislike/' + post_id,
+              data: $('#post_id').serialize(),
+              type: 'POST',
+              success: function(response){
+                console.log("Nombre de dislike : " + nb_dislike);
+              },
+              error: function(error){
+                console.log(error);
+              }
+            });
+     });
+  });
+
+ </script>
 {% endblock content %}

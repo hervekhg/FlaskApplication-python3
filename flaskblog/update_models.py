@@ -9,6 +9,7 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 #from flaskblog import db, login_manager
 from flask import current_app
 from flask_login import UserMixin
+import os
 
 
 from flask import Flask
@@ -22,7 +23,7 @@ DB_HOST = os.environ.get('DB_HOST')
 DB_USER = os.environ.get('DB_USER')
 DB_PASSWORD = os.environ.get('DB_PASSWORD')
 DB_NAME = os.environ.get('DB_NAME')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://%s:%s@%s/%s' %('DB_USER', 'DB_PASSWORD', 'DB_HOST', 'DB_NAME')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://%s:%s@%s/%s' %('237story', '237story!', 'localhost', '237story')
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -63,6 +64,8 @@ class Post(db.Model):
 	slug = db.Column(db.String(100), unique=True, nullable=False)
 	date_posted = db.Column(db.DateTime(),nullable=False, default=datetime.now)
 	content = db.Column(db.Text(1000), nullable=False)
+	like_post = db.Column(db.Integer, nullable=False)
+	dislike_post = db.Column(db.Integer,nullable=False)
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 	def __repr__(self):

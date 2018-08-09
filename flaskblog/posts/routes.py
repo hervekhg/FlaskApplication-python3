@@ -81,3 +81,25 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('main.home'))
+
+
+@posts.route("/post/like/<int:post_id>", methods=['GET','POST'])
+def like_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.like_post is None:
+        post.like_post = 1
+    else:
+        post.like_post = post.like_post + 1
+    db.session.commit()
+    return redirect(url_for('posts.post',post_id=post.id, slug=post.slug))
+
+@posts.route("/post/dislike/<int:post_id>", methods=['GET','POST'])
+def dislike_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.dislike_post is None:
+        post.dislike_post = 1 
+    else:
+        post.dislike_post = post.dislike_post + 1
+    db.session.commit()
+    return redirect(url_for('posts.post',post_id=post.id, slug=post.slug))
+
