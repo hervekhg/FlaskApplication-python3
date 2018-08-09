@@ -19,7 +19,8 @@ def new_post():
     if form.validate_on_submit():
         post = Post(title=form.title.data, content=form.content.data, author=current_user)
         post.slug = slugify(form.title.data)
-
+        post.like_post = 0
+        post.dislike_post = 0
         # Send email notification to all users
         users = User.query.all()
         emailsender = current_app.config['EMAIL_SENDER']
@@ -35,7 +36,7 @@ def new_post():
             raise
         finally:
             db.session.close()
-            
+
         return redirect(url_for('main.home'))
     return render_template('create_post.html', title='New Post',
                            form=form, legend='New Story')
