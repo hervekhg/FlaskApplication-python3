@@ -52,6 +52,7 @@ def post_all():
 
 
 @posts.route("/post/<int:post_id>/<slug>")
+@login_required
 def post(post_id, slug):
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', title=post.title, post=post)
