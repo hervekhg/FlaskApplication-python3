@@ -37,10 +37,11 @@ def send_reset_email(user,emailsender):
     msg = Message('237story - Password Reset Request',
                   sender=emailsender,
                   recipients=[user.email])
-    msg.body = '''To reset your password, visit the following link:
-%s
-If you did not make this request then simply ignore this email and no changes will be made.
-''' %(url_for('users.reset_token', token=token, _external=True))
+#     msg.body = '''To reset your password, visit the following link:
+# %s
+# If you did not make this request then simply ignore this email and no changes will be made.
+# ''' %(url_for('users.reset_token', token=token, _external=True))
+    msg.html = render_template('emails/reset_password.html', token=token, user=user)
     mail.send(msg)
 
 
