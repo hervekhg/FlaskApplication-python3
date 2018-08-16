@@ -51,10 +51,15 @@ def post_all():
     return render_template('all_post.html', posts=posts)
 
 
-@posts.route("/post/<int:post_id>/<slug>")
+#@posts.route("/post/<int:post_id>/<slug>")
+@posts.route("/<slug>")
 @login_required
-def post(post_id, slug):
-    post = Post.query.get_or_404(post_id)
+#def post(post_id, slug):
+def post(slug):
+    #post = Post.query.get_or_404(post_id)
+    #return render_template('post.html', title=post.title, post=post)
+
+    post = Post.query.filter(Post.slug==slug).first()
     return render_template('post.html', title=post.title, post=post)
 
 

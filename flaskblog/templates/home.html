@@ -8,8 +8,8 @@
               <a class="mr-2 text-success" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
               <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
             </div>
-            <h2><a class="article-title" href="{{ url_for('posts.post', post_id=post.id, slug=post.slug) }}">{{ post.title }}</a></h2>
-            <p class="article-content"> {{ post.content[:250] }} ... <a href="{{ url_for('posts.post', post_id=post.id, slug=post.slug) }}"> La suite ici</a></p>
+            <h2><a class="article-title" href="{{ url_for('posts.post', slug=post.slug) }}">{{ post.title }}</a></h2>
+            <p class="article-content"> {{ post.content[:250] }} ... <a href="{{ url_for('posts.post',slug=post.slug) }}"> La suite ici</a></p>
           </div>
         </article>
     {% endfor %}
