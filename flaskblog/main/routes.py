@@ -23,9 +23,12 @@ def sitemap_xml():
 	pages=[]
 	ten_days_ago=datetime.now() - timedelta(days=10)
 	# static pages
-	for rule in current_app.url_map.iter_rules():
-		if "GET" in rule.methods and len(rule.arguments)==0:
-			pages.append([rule.rule,ten_days_ago])
+	# for rule in current_app.url_map.iter_rules():
+	# 	if "GET" in rule.methods and len(rule.arguments)==0:
+	# 		pages.append([rule.rule,ten_days_ago])
+	for url in ['main.home', 'main.about']:
+		page = url_for(url, _external=True)
+		pages.append([page,ten_days_ago])
 
 	posts = Post.query.order_by(Post.date_posted.desc())
 	for post in posts:
