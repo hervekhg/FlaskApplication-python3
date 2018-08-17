@@ -29,7 +29,7 @@ def sitemap_xml():
 
 	posts = Post.query.order_by(Post.date_posted.desc())
 	for post in posts:
-		page = url_for('posts.post', post_id=post.id, slug=post.slug, _external=True)
+		page = url_for('posts.post', slug=post.slug, _external=True)
 		pages.append([page,ten_days_ago])
 
 	sitemap_xml = render_template('sitemap/sitemap_template.xml', pages=pages)
