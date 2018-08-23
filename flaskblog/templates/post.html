@@ -3,6 +3,7 @@
 <meta id="post_id" data-post_id="{{ post.id }}">
 <meta id="nb_like" data-nb_like="{{ post.like_post }}">
 <meta id="nb_dislike" data-nb_dislike="{{ post.dislike_post }}">
+
   <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
     <div class="media-body">
@@ -17,7 +18,11 @@
         {% endif %}
       </div>
       <h2 class="article-title">{{ post.title }}</h2>
-      <p class="article-content">{{ post.content }}</p>
+      {% if current_user.is_authenticated %}
+        <p class="article-content">{{ post.content }}</p>
+      {% else %}
+        <p class="article-content"> {{ post.content[:250] }} ... <a href="{{ url_for('users.register') }}"> Register to read all</a></p>
+      {% endif %}
     </div>
   </article>
 

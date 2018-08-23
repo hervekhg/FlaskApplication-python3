@@ -4,7 +4,10 @@
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Join Today</legend>
+                    <small class="text-muted">
+                        Already An Account? <a class="ml-2" href="{{ url_for('users.login') }}">Login Here</a> (else fill the form below)
+                    </small>
+                <legend class="border-bottom mb-4">Create your account</legend>
                 <div class="form-group">
                     {{ form.username.label(class="form-control-label") }}
 
