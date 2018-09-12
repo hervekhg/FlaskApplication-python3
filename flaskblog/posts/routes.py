@@ -58,9 +58,16 @@ def post_all():
 def post(slug):
     #post = Post.query.get_or_404(post_id)
     #return render_template('post.html', title=post.title, post=post)
-
     post = Post.query.filter(Post.slug==slug).first()
     return render_template('post.html', title=post.title, post=post)
+
+@posts.route("/search", methods=['GET', 'POST'])
+def search():
+    keyword = request.args.get("search")
+    find_keyword = "%" + keyword + "%"
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter(Post.title.like(find_keyword)).order_by(Post.date_posted.desc()).paginate(page=page, per_page=20)
+    return render_template('search.html', posts=posts)
 
 
 @posts.route("/post/<int:post_id>/update", methods=['GET', 'POST'])

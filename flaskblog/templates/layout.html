@@ -51,6 +51,10 @@
                 <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
                 <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
               {% endif %}
+              <form class="form-group" action="{{ url_for('posts.search') }}" style="margin:auto;max-width:300px">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit" class="btn btn-dark"><i class="fa fa-search"></i></button>
+              </form>
             </div>
           </div>
         </div>
