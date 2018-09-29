@@ -7,7 +7,12 @@ from flaskblog.posts.forms import PostForm
 from flaskblog.posts.utils import slugify
 from flaskblog.users.utils import send_newpostnotif_email
 
+
 import threading
+import datetime
+
+today = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+yesterday = str(datetime.datetime.now() - datetime.timedelta(days = 1))
 
 posts = Blueprint('posts',__name__)
 
@@ -21,13 +26,8 @@ def new_post():
         post.slug = slugify(form.title.data)
         post.like_post = 0
         post.dislike_post = 0
-        # Send email notification to all users
-        users = User.query.all()
-        emailsender = current_app.config['EMAIL_SENDER']
-        username = current_user.username
-        send_newpostnotif_email(username,users,post,emailsender)
-        
         db.session.add(post)
+
         try:
             db.session.commit()
             flash('Your post has been created!', 'success')
@@ -102,6 +102,20 @@ def delete_post(post_id):
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('main.home'))
 
+
+@posts.route("/post/notification", methods=['GET','POST'])
+@login_required
+def sendemail_post():
+    if current_user.username != 'admin237story':
+        abort(403)
+    # Send email notification to all users
+    users = User.query.all()
+    posts = Post.query.filter(Post.date_posted.between(yesterday, today)).order_by(Post.date_posted.desc())
+    emailsender = current_app.config['EMAIL_SENDER']
+    username = current_user.username
+    send_newpostnotif_email(username,users,posts,emailsender)
+    flash('The email notification has been sent!', 'success')
+    return redirect(url_for('main.home'))
 
 @posts.route("/post/like/<int:post_id>", methods=['GET','POST'])
 def like_post(post_id):
