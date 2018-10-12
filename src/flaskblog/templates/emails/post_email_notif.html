@@ -1,0 +1,9 @@
+<p>Dear <strong> <font color="Blue">{{ user.username }}</font></strong>,</p>
+
+<p> <strong><font color="Blue">{{ username }}</font></strong> has published a New Story : <strong>{{ post.title }}</strong></p> 
+
+<p><em><strong>{{ post.content[:120] }} .... </strong><a href="{{ url_for('posts.post', post_id=post.id, slug=post.slug, _external=True) }}">Read More</a></em>
+</p>
+<hr>
+<p>Regards,</p>
+<p><font color="Blue"><a href="http://237story.entreprendre.cm">237Story By HK-Engineering</a></font></p>

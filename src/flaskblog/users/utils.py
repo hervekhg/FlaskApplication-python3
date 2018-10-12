@@ -7,7 +7,6 @@ from flaskblog import mail, create_app
 import base64
 import binascii
 import os
-from datetime import datetime
 
 from hmac import compare_digest
 from random import SystemRandom
@@ -51,18 +50,19 @@ def send_async_email(app, msg):
     with app.app_context():
         mail.send(msg)
 
-def send_newpostnotif_email(username,users,posts,emailsender):
+def send_newpostnotif_email(username,users,post,emailsender):
     app = create_app()
-    now = str(datetime.now().strftime("%Y-%m-%d"))
     for recipient_user in users:
         #username = current_user.username
-        objet = "237story [Story of %s] " %(now)
-        msg = Message(objet,
+        msg = Message('237story [New Story] - ' + post.title,
                       sender=emailsender,
-                      recipients=[recipient_user.email])
-        print(users,posts)
+                      recipients=[recipient_user.email]) 
+    #     msg.body = '''Hello,
+    # %s has published a new Story.
+    # You could read it now : %s
+    # ''' %(username, url_for('posts.post', post_id=post.id, slug=post.slug, _external=True))
         msg.html = render_template('emails/post_email_notif.html',
-                                   posts=posts, username=username, user=recipient_user)
+                                   post=post, username=username, user=recipient_user)
         thr = Thread(target=send_async_email, args=[app, msg])
         thr.start()
         #mail.send(msg)

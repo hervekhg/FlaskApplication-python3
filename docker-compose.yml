@@ -1,0 +1,19 @@
+site:
+  image: hervekhg/237story:2.0
+  ports :
+   - "9098:8000"
+  volumes:
+   - /appli/docker/237story/src/flaskblog:/app/flaskblog
+  links:
+   - database
+
+database:
+  image: mysql:5.5
+  ports:
+   - "3308:3306"
+  environment:
+   - MYSQL_ROOT_PASSWORD=237story
+   - MYSQL_DATABASE=237story
+   - MYSQL_USER=237story
+   - MYSQL_PASSWORD=237story
+
