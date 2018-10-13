@@ -11,8 +11,6 @@ from flaskblog.users.utils import send_newpostnotif_email
 import threading
 import datetime
 
-today = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-yesterday = str(datetime.datetime.now() - datetime.timedelta(days = 1))
 
 posts = Blueprint('posts',__name__)
 
@@ -106,6 +104,9 @@ def delete_post(post_id):
 @posts.route("/post/notification", methods=['GET','POST'])
 @login_required
 def sendemail_post():
+    today = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    yesterday = str(datetime.datetime.now() - datetime.timedelta(days = 1))
+    
     if current_user.username != 'admin237story':
         abort(403)
     # Send email notification to all users
