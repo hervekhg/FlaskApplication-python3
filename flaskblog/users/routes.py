@@ -1,7 +1,7 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint, current_app, abort
+from flask import render_template, url_for, flash, jsonify, redirect, request, Blueprint, current_app, abort
 from flask_login import login_user, current_user, logout_user, login_required
 from flaskblog import db, bcrypt
-from flaskblog.models import User, Post
+from flaskblog.models import User, Post, UserSchema
 from flaskblog.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
                                    RequestResetForm, ResetPasswordForm)
 from flaskblog.users.utils import save_picture, send_reset_email
@@ -133,7 +133,6 @@ def reset_request():
     return render_template('reset_request.html', title='Reset Password', form=form)
 
 
-
 @users.route("/reset_password/<token>", methods=['GET', 'POST'])
 def reset_token(token):
     if current_user.is_authenticated:
@@ -150,3 +149,13 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
+
+
+##### API ####
+@users.route("/api/user/all", methods=['GET'])
+@login_required
+def api_user_all():
+    allusers = User.query.all()
+    users_schema = UserSchema(many=True)
+    result = users_schema.dump(allusers)
+    return jsonify(result.data)

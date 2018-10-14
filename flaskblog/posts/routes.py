@@ -1,8 +1,8 @@
 from flask import (render_template, url_for, flash,
-                   redirect, request, abort, Blueprint, current_app)
+                   redirect, request, jsonify, abort, Blueprint, current_app)
 from flask_login import current_user, login_required
 from flaskblog import db
-from flaskblog.models import Post, User
+from flaskblog.models import Post, User, PostSchema
 from flaskblog.posts.forms import PostForm
 from flaskblog.posts.utils import slugify
 from flaskblog.users.utils import send_newpostnotif_email
@@ -137,4 +137,14 @@ def dislike_post(post_id):
         post.dislike_post = post.dislike_post + 1
     db.session.commit()
     return redirect(url_for('posts.post',post_id=post.id, slug=post.slug))
+
+##### API ####
+@posts.route("/api/post/all", methods=['GET'])
+#@login_required
+def api_post_all():
+    allposts = Post.query.all()
+    posts_schema = PostSchema(many=True)
+    result = posts_schema.dump(allposts)
+    return jsonify(result.data)
+    #return posts_schema.jsonify(allposts)
 
