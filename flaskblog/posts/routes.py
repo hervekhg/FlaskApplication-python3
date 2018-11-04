@@ -142,7 +142,7 @@ def dislike_post(post_id):
 @posts.route("/api/post/all", methods=['GET'])
 #@login_required
 def api_post_all():
-    allposts = Post.query.order_by(Post.date_posted.desc()).all()
+    allposts = Post.query.order_by(Post.date_posted.desc()).limit(250).all()
     posts_schema = PostSchema(many=True)
     result = posts_schema.dump(allposts)
     return jsonify(result.data)
