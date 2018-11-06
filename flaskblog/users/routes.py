@@ -99,9 +99,11 @@ def delete_user(user_id):
     if current_user.username != 'admin237story':
         abort(403)
     user = User.query.get_or_404(user_id)
-    posts = Post.query.filter_by(author=user)
-    for post in posts:
-        db.session.delete(post)
+    if user.username == 'admin237story':
+        abort(403)
+    #posts = Post.query.filter_by(author=user)
+    #for post in posts:
+    #    db.session.delete(post)
     db.session.delete(user)
     db.session.commit()
     flash('Your user has been deleted!', 'success')
