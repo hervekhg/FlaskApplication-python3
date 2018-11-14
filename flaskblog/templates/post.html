@@ -23,6 +23,17 @@
       {% else %}
         <p class="article-content"> {{ post.content[:250] }} ... <a href="{{ url_for('users.register') }}"> Register to read all</a></p>
       {% endif %}
+
+      <div class="navigate">
+        {% if post.slug != slug_suiv %}
+          <a href="{{ url_for('posts.post', slug=slug_suiv) }}" class="previous">&laquo; Next</a>
+        {% endif %}
+
+        {% if post.slug != slug_prev  %}
+         <a href="{{ url_for('posts.post', slug=slug_prev) }}"class="next">Previous &raquo;</a>
+        {% endif %}
+      </div>
+
     </div>
   </article>
 

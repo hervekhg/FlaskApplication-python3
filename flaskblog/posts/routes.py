@@ -11,6 +11,8 @@ from flaskblog.users.utils import send_newpostnotif_email
 import threading
 import datetime
 
+#Pour debug
+import sys
 
 posts = Blueprint('posts',__name__)
 
@@ -57,7 +59,29 @@ def post(slug):
     #post = Post.query.get_or_404(post_id)
     #return render_template('post.html', title=post.title, post=post)
     post = Post.query.filter(Post.slug==slug).first()
-    return render_template('post.html', title=post.title, post=post)
+
+    post_id = int(post.id)
+
+    post_id_prev = post_id + 1
+    post_id_suiv = post_id - 1
+
+    #prev_image = Post.query.order_by(id.desc()).filter(Images.id < id).first()
+
+    prev = (Post.query.filter(Post.id < post_id).first())
+    suiv = (Post.query.filter(Post.id > post_id).first())
+    
+    if prev is not None:
+        slug_prev = prev.slug
+    else:
+        slug_prev = slug
+
+    if suiv is not None:
+        slug_suiv = suiv.slug
+    else:
+        slug_suiv = slug
+
+    return render_template('post.html', title=post.title, post=post, slug_suiv=slug_suiv, slug_prev=slug_prev)
+
 
 @posts.route("/search", methods=['GET', 'POST'])
 def search():

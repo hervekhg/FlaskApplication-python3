@@ -78,3 +78,26 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+
+article .navigate a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+article .navigate a:hover {
+    text-decoration: none;
+    background-color: #ddd;
+    color: black;
+}
+
+article .previous {
+    background-color: #4CAF50;
+    color: white;
+}
+
+article .next {
+    background-color: #4CAF50;
+    color: white;
+}
+
