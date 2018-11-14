@@ -67,8 +67,8 @@ def post(slug):
 
     #prev_image = Post.query.order_by(id.desc()).filter(Images.id < id).first()
 
-    prev = (Post.query.filter(Post.id < post_id).first())
-    suiv = (Post.query.filter(Post.id > post_id).first())
+    prev = (Post.query.order_by(Post.id.desc()).filter(Post.id < post_id).first())
+    suiv = (Post.query.order_by(Post.id.asc()).filter(Post.id > post_id).first())
     
     if prev is not None:
         slug_prev = prev.slug
