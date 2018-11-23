@@ -17,12 +17,15 @@
           </div>
         {% endif %}
       </div>
-      <h2 class="article-title">{{ post.title }}</h2>
+
+      <!-- <h2 class="article-title">{{ post.title }}</h2>
       {% if current_user.is_authenticated %}
         <p class="article-content">{{ post.content }}</p>
       {% else %}
         <p class="article-content"> {{ post.content[:250] }} ... <a href="{{ url_for('users.register') }}"> Register to read all</a></p>
-      {% endif %}
+      {% endif %} -->
+      <h2 class="article-title">{{ post.title }}</h2>
+      <p class="article-content">{{ post.content }}</p>
 
       <div class="navigate">
         {% if post.slug != slug_suiv %}
