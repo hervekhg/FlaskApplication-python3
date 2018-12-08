@@ -7,8 +7,12 @@
 #####################
 
 gunicorn="/usr/local/bin/gunicorn"
-prog="237story.entreprendre.cm"
-STORY_HOME="/appli/$prog/"
+#prog="237story.entreprendre.cm"
+#STORY_HOME="/appli/$prog/"
+
+prog="237story"
+STORY_HOME="/appli/$prog/current/"
+
 LOG_FILE="/var/log/gunicorn/237story.log"
 pid="/var/lock/$prog"
 
