@@ -13,6 +13,7 @@ import datetime
 
 #Pour debug
 import sys
+import logging
 
 posts = Blueprint('posts',__name__)
 
@@ -31,6 +32,7 @@ def new_post():
         try:
             db.session.commit()
             flash('Your post has been created!', 'success')
+            current_app.logger.info("New Story - %s", (current_user.username, current_user.email, post.slug))
         except:
             db.session.rollback()
             raise
@@ -89,6 +91,7 @@ def search():
     find_keyword = "%" + keyword + "%"
     page = request.args.get('page', 1, type=int)
     posts = Post.query.filter(Post.title.like(find_keyword)).order_by(Post.date_posted.desc()).paginate(page=page, per_page=20)
+    current_app.logger.info("New Search - %s", (find_keyword))
     return render_template('search.html', posts=posts)
 
 
@@ -104,6 +107,7 @@ def update_post(post_id):
         post.content = form.content.data
         db.session.commit()
         flash('Your post has been updated!', 'success')
+        current_app.logger.info("Update Story - %s", (current_user.username, current_user.email, post.slug))
         return redirect(url_for('posts.post', slug=post.slug))
     elif request.method == 'GET':
         form.title.data = post.title
@@ -122,6 +126,7 @@ def delete_post(post_id):
     db.session.delete(post)
     db.session.commit()
     flash('Your post has been deleted!', 'success')
+    current_app.logger.info("New Delete - %s", (current_user.username, current_user.email, post.slug))
     return redirect(url_for('main.home'))
 
 
@@ -140,6 +145,7 @@ def sendemail_post():
     username = current_user.username
     send_newpostnotif_email(username,users,posts,emailsender)
     flash('The email notification has been sent!', 'success')
+    current_app.logger.info("New Notification - %s", (current_user.username, current_user.email))
     return redirect(url_for('main.home'))
 
 @posts.route("/post/like/<int:post_id>", methods=['GET','POST'])
@@ -150,6 +156,7 @@ def like_post(post_id):
     else:
         post.like_post = post.like_post + 1
     db.session.commit()
+    current_app.logger.info("New Like - %s", (post.slug))
     return redirect(url_for('posts.post',post_id=post.id, slug=post.slug))
 
 @posts.route("/post/dislike/<int:post_id>", methods=['GET','POST'])
@@ -160,12 +167,14 @@ def dislike_post(post_id):
     else:
         post.dislike_post = post.dislike_post + 1
     db.session.commit()
+    current_app.logger.info("New DisLike - %s", (post.slug))
     return redirect(url_for('posts.post',post_id=post.id, slug=post.slug))
 
 ##### API ####
 @posts.route("/api/post/all", methods=['GET'])
 #@login_required
 def api_post_all():
+    current_app.logger.info("New Mobile Call")
     allposts = Post.query.order_by(Post.date_posted.desc()).limit(250).all()
     posts_schema = PostSchema(many=True)
     result = posts_schema.dump(allposts)
