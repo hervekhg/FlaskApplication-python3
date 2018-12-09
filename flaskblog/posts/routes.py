@@ -63,7 +63,6 @@ def post(slug):
     post = Post.query.filter(Post.slug==slug).first()
 
     post_id = int(post.id)
-
     post_id_prev = post_id + 1
     post_id_suiv = post_id - 1
 
