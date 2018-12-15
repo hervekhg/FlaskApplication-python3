@@ -7,6 +7,9 @@ from flaskblog.config import Config
 
 from flask_marshmallow import Marshmallow
 
+import logging
+logging.basicConfig(filename='logs/237story.log', level=logging.INFO)
+
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()

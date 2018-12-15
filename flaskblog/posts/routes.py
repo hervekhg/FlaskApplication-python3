@@ -13,7 +13,7 @@ import datetime
 
 #Pour debug
 import sys
-import logging
+
 
 posts = Blueprint('posts',__name__)
 
