@@ -2,6 +2,7 @@
 flaskblog/site.db
 # Ignore log
 *.log
+logs/237story.log
 # Os generate file
 .DS_Store
 flaskblog/static/.DS_Store
