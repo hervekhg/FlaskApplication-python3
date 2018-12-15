@@ -81,6 +81,7 @@ def post(slug):
     else:
         slug_suiv = slug
 
+    current_app.logger.info("URI: - %s", (post.slug))
     return render_template('post.html', title=post.title, post=post, slug_suiv=slug_suiv, slug_prev=slug_prev)
 
 
@@ -91,6 +92,8 @@ def search():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.filter(Post.title.like(find_keyword)).order_by(Post.date_posted.desc()).paginate(page=page, per_page=20)
     current_app.logger.info("New Search - %s", (find_keyword))
+
+    current_app.logger.info("FIND: - %s", (keyword))
     return render_template('search.html', posts=posts)
 
 
