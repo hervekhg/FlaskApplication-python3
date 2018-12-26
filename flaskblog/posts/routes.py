@@ -129,7 +129,7 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     current_app.logger.info("New Delete - %s", (current_user.username, current_user.email, post.slug))
-    return redirect(url_for('main.home'))
+    return redirect(url_for('posts.post_all'))
 
 
 @posts.route("/post/notification", methods=['GET','POST'])
