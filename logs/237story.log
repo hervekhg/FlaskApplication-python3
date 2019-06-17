@@ -38,3 +38,112 @@ INFO:werkzeug:127.0.0.1 - - [04/May/2019 20:15:03] "GET /static/logo/237storylow
 INFO:flask.app:URI: - adding-log-237story
 INFO:werkzeug:127.0.0.1 - - [04/May/2019 20:22:07] "GET /adding-log-237story HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [04/May/2019 20:22:10] "GET /static/logo/237storylow.png HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 223-340-951
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:00:14] "GET /robots.txt HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:00:15] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:00:15] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:00:15] "GET /static/css/like_dislike.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:00:15] "GET /static/css/social.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:00:15] "GET /static/logo/237storylow.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:00:15] "GET /static/profile_pics/default.png HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/usr/local/lib/python3.7/site-packages/slugify/__init__.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 223-340-951
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:02:50] "GET /api/post/1 HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:02:56] "GET /api/post/30 HTTP/1.1" 404 -
+INFO:flask.app:New Mobile Call
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:03:01] "GET /api/post/all HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:03:01] "GET /favicon.ico HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:03:18] "GET /api/post/108 HTTP/1.1" 404 -
+INFO:flask.app:New Mobile Call
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:03:22] "GET /api/post/all HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:03:22] "GET /favicon.ico HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/macbookpro/Desktop/DEV/FlaskBlog/flaskblog/posts/routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 223-340-951
+INFO:flask.app:New Mobile Call - GET POLITICS POST
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:07:47] "GET /api/post/politics HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:07:48] "GET /favicon.ico HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/macbookpro/Desktop/DEV/FlaskBlog/flaskblog/posts/routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 223-340-951
+INFO:werkzeug: * Detected change in '/Users/macbookpro/Desktop/DEV/FlaskBlog/flaskblog/posts/routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 223-340-951
+INFO:werkzeug: * Detected change in '/Users/macbookpro/Desktop/DEV/FlaskBlog/flaskblog/posts/routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 223-340-951
+INFO:werkzeug: * Detected change in '/Users/macbookpro/Desktop/DEV/FlaskBlog/flaskblog/posts/routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 223-340-951
+INFO:flask.app:New Mobile Call - GET POLITICS POST
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:11:15] "GET /api/post/politics HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:11:15] "GET /api/post/politics?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:11:15] "GET /api/post/politics?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:11:15] "GET /api/post/politics?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:11:16] "GET /api/post/politics?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:11:16] "GET /api/post/politics?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:11:16] "GET /api/post/politics?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/macbookpro/Desktop/DEV/FlaskBlog/flaskblog/posts/routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 223-340-951
+INFO:flask.app:New Mobile Call - GET POLITICS POST
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:12:10] "GET /api/post/politics HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:12:11] "GET /favicon.ico HTTP/1.1" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:12:22] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:12:28] "GET /login HTTP/1.1" 200 -
+INFO:flask.app:New Login :  - contact@entreprendre.cm
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:12:31] "POST /login HTTP/1.1" 302 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:12:31] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:12:37] "GET /post/new HTTP/1.1" 200 -
+INFO:flask.app:New Story - ('admin237story', 'contact@entreprendre.cm', 'crise-anglophone-9-ong-chargent-le-régime-biya-aux-nation-unies')
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:13:36] "POST /post/new HTTP/1.1" 302 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:13:36] "GET /home HTTP/1.1" 200 -
+INFO:flask.app:New Mobile Call - GET POLITICS POST
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:13:41] "GET /api/post/politics HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:13:42] "GET /favicon.ico HTTP/1.1" 500 -
+INFO:flask.app:New Mobile Call - GET POLITICS POST
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:13:44] "GET /api/post/politics HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:13:44] "GET /favicon.ico HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/macbookpro/Desktop/DEV/FlaskBlog/flaskblog/posts/routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 223-340-951
+INFO:flask.app:New Mobile Call - GET POLITICS POST
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:14:04] "GET /api/post/politics HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:14:04] "GET /favicon.ico HTTP/1.1" 500 -
+INFO:werkzeug: * Detected change in '/Users/macbookpro/Desktop/DEV/FlaskBlog/flaskblog/posts/routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 223-340-951
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:31:07] "GET /post/new HTTP/1.1" 200 -
+INFO:flask.app:New Story - ('admin237story', 'contact@entreprendre.cm', 'faits-divers-un-moto-taximen-se-fait-tuer-sur-yaoundé-douala')
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:32:21] "POST /post/new HTTP/1.1" 302 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:32:21] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:32:42] "GET /post/new HTTP/1.1" 200 -
+INFO:flask.app:New Story - ('admin237story', 'contact@entreprendre.cm', 'faits-divers-nouveau-meurtre-à-douala')
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:33:05] "POST /post/new HTTP/1.1" 302 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:33:05] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/Users/macbookpro/Desktop/DEV/FlaskBlog/flaskblog/posts/routes.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 223-340-951
+INFO:flask.app:New Mobile Call - GET FAIT DIVERS POST
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:34:11] "GET /api/post/divers HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Jun/2019 18:34:12] "GET /favicon.ico HTTP/1.1" 500 -

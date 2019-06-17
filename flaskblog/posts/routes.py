@@ -56,7 +56,6 @@ def post_all():
 #@posts.route("/post/<int:post_id>/<slug>")
 @posts.route("/<slug>")
 #@login_required
-#def post(post_id, slug):
 def post(slug):
     #post = Post.query.get_or_404(post_id)
     #return render_template('post.html', title=post.title, post=post)
@@ -172,14 +171,79 @@ def dislike_post(post_id):
     current_app.logger.info("New DisLike - %s", (post.slug))
     return redirect(url_for('posts.post',post_id=post.id, slug=post.slug))
 
-##### API ####
+##------------------------------------------------------------------------------------------
+# API ENDPOINT URL #
+#-------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------
 @posts.route("/api/post/all", methods=['GET'])
-#@login_required
 def api_post_all():
-    current_app.logger.info("New Mobile Call")
+    current_app.logger.info("New Mobile Call - GET ALL POST")
     allposts = Post.query.order_by(Post.date_posted.desc()).limit(250).all()
     posts_schema = PostSchema(many=True)
     result = posts_schema.dump(allposts)
     return jsonify(result.data)
-    #return posts_schema.jsonify(allposts)
 
+
+@posts.route("/api/post/politic", methods=['GET'])
+def api_post_politic():
+    current_app.logger.info("New Mobile Call - GET POLITIC POST")
+    allposts = Post.query.filter(Post.title.like("%politique%")).order_by(Post.date_posted.desc()).limit(250).all()
+    posts_schema = PostSchema(many=True)
+    result = posts_schema.dump(allposts)
+    return jsonify(result.data)
+
+@posts.route("/api/post/economic", methods=['GET'])
+def api_post_economic():
+    current_app.logger.info("New Mobile Call - GET ECONOMIC POST")
+    allposts = Post.query.filter(Post.title.like("%économie%")).order_by(Post.date_posted.desc()).limit(250).all()
+    posts_schema = PostSchema(many=True)
+    result = posts_schema.dump(allposts)
+    return jsonify(result.data)
+
+@posts.route("/api/post/sport", methods=['GET'])
+def api_post_sport():
+    current_app.logger.info("New Mobile Call - GET SPORT POST")
+    allposts = Post.query.filter(Post.title.like("%sport%")).order_by(Post.date_posted.desc()).limit(250).all()
+    posts_schema = PostSchema(many=True)
+    result = posts_schema.dump(allposts)
+    return jsonify(result.data)
+
+@posts.route("/api/post/biya", methods=['GET'])
+def api_post_biya():
+    current_app.logger.info("New Mobile Call - GET BIYA POST")
+    allposts = Post.query.filter(Post.title.like("%biya%")).order_by(Post.date_posted.desc()).limit(250).all()
+    posts_schema = PostSchema(many=True)
+    result = posts_schema.dump(allposts)
+    return jsonify(result.data)
+
+@posts.route("/api/post/kamto", methods=['GET'])
+def api_post_kamto():
+    current_app.logger.info("New Mobile Call - GET KAMTO POST")
+    allposts = Post.query.filter(Post.title.like("%kamto%")).order_by(Post.date_posted.desc()).limit(250).all()
+    posts_schema = PostSchema(many=True)
+    result = posts_schema.dump(allposts)
+    return jsonify(result.data)
+
+@posts.route("/api/post/libii", methods=['GET'])
+def api_post_libii():
+    current_app.logger.info("New Mobile Call - GET LIBII POST")
+    allposts = Post.query.filter(Post.title.like("%libii%")).order_by(Post.date_posted.desc()).limit(250).all()
+    posts_schema = PostSchema(many=True)
+    result = posts_schema.dump(allposts)
+    return jsonify(result.data)
+
+@posts.route("/api/post/divers", methods=['GET'])
+def api_post_divers():
+    current_app.logger.info("New Mobile Call - GET FAIT DIVERS POST")
+    allposts = Post.query.filter(Post.title.like("%divers%")).order_by(Post.date_posted.desc()).limit(250).all()
+    posts_schema = PostSchema(many=True)
+    result = posts_schema.dump(allposts)
+    return jsonify(result.data)
+
+@posts.route("/api/post/noso", methods=['GET'])
+def api_post_noso():
+    current_app.logger.info("New Mobile Call - GET NOSO POST")
+    allposts = Post.query.filter(Post.title.like("%noso%")).order_by(Post.date_posted.desc()).limit(250).all()
+    posts_schema = PostSchema(many=True)
+    result = posts_schema.dump(allposts)
+    return jsonify(result.data)
