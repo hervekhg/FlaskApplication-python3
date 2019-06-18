@@ -379,3 +379,10 @@ INFO:werkzeug:127.0.0.1 - - [18/Jun/2019 23:02:37] "GET /politic HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [18/Jun/2019 23:02:55] "GET /sport HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [18/Jun/2019 23:02:58] "GET /others HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [18/Jun/2019 23:03:01] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Jun/2019 23:03:50] "GET /sport HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Jun/2019 23:04:01] "GET /education HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Jun/2019 23:04:04] "GET /politic HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Jun/2019 23:04:39] "GET /politic HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Jun/2019 23:05:44] "GET /politic HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Jun/2019 23:05:48] "GET /education HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Jun/2019 23:05:53] "GET / HTTP/1.1" 200 -
