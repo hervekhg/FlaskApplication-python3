@@ -52,25 +52,46 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
-              <a class="nav-item nav-link" target="_blank" href="http://audio.237story.com">Audio Website</a>
-              <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
+                <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categories
+                    </a>
+                <div class="dropdown-menu" aria-labelledby="Categories">
+                    <a class="dropdown-item" href="{{ url_for('posts.economy') }}">Economy</a>
+                    <a class="dropdown-item" href="{{ url_for('posts.politic') }}">Politic</a>
+                    <a class="dropdown-item" href="{{ url_for('posts.sport') }}">Sport</a>
+                    <a class="dropdown-item" href="{{ url_for('posts.education') }}">Education</a>
+                    <a class="dropdown-item" href="{{ url_for('posts.divers') }}">Others</a>
+                </div>
+                </li>
+
+                <a class="nav-item nav-link" target="_blank" href="http://audio.237story.com">Audio</a>
+                <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
+
+
             </div>
+
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if current_user.is_authenticated %}
 
                 {% if current_user.username == "admin237story" %}
-                    <a class="nav-item nav-link" href="{{ url_for('posts.post_all') }}">AllPost</a>
-                    <a class="nav-item nav-link" href="{{ url_for('users.user_all') }}">AllUser</a>
+                    <a class="nav-item nav-link" href="{{ url_for('posts.post_all') }}">Posts</a>
+                    <a class="nav-item nav-link" href="{{ url_for('users.user_all') }}">Users</a>
+
                 {% endif %}
 
-                <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Story</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+                    <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Story</a>
+                    <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
+                    <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+
               {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
+
+                    <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
+                    <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
+
               {% endif %}
               <form class="form-group" action="{{ url_for('posts.search') }}" style="margin:auto;max-width:300px">
                 <input type="text" placeholder="Search.." name="search">
@@ -81,6 +102,7 @@
         </div>
       </nav>
     </header>
+
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">

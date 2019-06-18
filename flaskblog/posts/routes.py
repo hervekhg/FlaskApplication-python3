@@ -171,9 +171,39 @@ def dislike_post(post_id):
     current_app.logger.info("New DisLike - %s", (post.slug))
     return redirect(url_for('posts.post',post_id=post.id, slug=post.slug))
 
+
+@posts.route("/politic")
+def politic():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter(Post.title.like("%politique%")).order_by(Post.date_posted.desc()).paginate(page=page, per_page=20)
+    return render_template('home.html', posts=posts)
+
+@posts.route("/economy")
+def economy():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter(Post.title.like("%economie%")).order_by(Post.date_posted.desc()).paginate(page=page, per_page=20)
+    return render_template('home.html', posts=posts)
+
+@posts.route("/sport")
+def sport():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter(Post.title.like("%sport%")).order_by(Post.date_posted.desc()).paginate(page=page, per_page=20)
+    return render_template('home.html', posts=posts)
+
+@posts.route("/education")
+def education():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter(Post.title.like("%education%")).order_by(Post.date_posted.desc()).paginate(page=page, per_page=20)
+    return render_template('home.html', posts=posts)
+
+@posts.route("/others")
+def divers():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.filter(Post.title.like("%divers%")).order_by(Post.date_posted.desc()).paginate(page=page, per_page=20)
+    return render_template('home.html', posts=posts)
+
 ##------------------------------------------------------------------------------------------
 # API ENDPOINT URL #
-#-------------------------------------------------------------------------------------------
 #-------------------------------------------------------------------------------------------
 @posts.route("/api/post/all", methods=['GET'])
 def api_post_all():
@@ -192,10 +222,10 @@ def api_post_politic():
     result = posts_schema.dump(allposts)
     return jsonify(result.data)
 
-@posts.route("/api/post/economic", methods=['GET'])
+@posts.route("/api/post/economy", methods=['GET'])
 def api_post_economic():
     current_app.logger.info("New Mobile Call - GET ECONOMIC POST")
-    allposts = Post.query.filter(Post.title.like("%économie%")).order_by(Post.date_posted.desc()).limit(250).all()
+    allposts = Post.query.filter(Post.title.like("%economie%")).order_by(Post.date_posted.desc()).limit(250).all()
     posts_schema = PostSchema(many=True)
     result = posts_schema.dump(allposts)
     return jsonify(result.data)
@@ -204,6 +234,14 @@ def api_post_economic():
 def api_post_sport():
     current_app.logger.info("New Mobile Call - GET SPORT POST")
     allposts = Post.query.filter(Post.title.like("%sport%")).order_by(Post.date_posted.desc()).limit(250).all()
+    posts_schema = PostSchema(many=True)
+    result = posts_schema.dump(allposts)
+    return jsonify(result.data)
+
+@posts.route("/api/post/education", methods=['GET'])
+def api_post_education():
+    current_app.logger.info("New Mobile Call - GET EDUCATION POST")
+    allposts = Post.query.filter(Post.title.like("%education%")).order_by(Post.date_posted.desc()).limit(250).all()
     posts_schema = PostSchema(many=True)
     result = posts_schema.dump(allposts)
     return jsonify(result.data)
