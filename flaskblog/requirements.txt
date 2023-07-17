@@ -8,7 +8,7 @@ alembic==1.0.0
 Flask_Migrate==2.2.1
 Flask_Mail==0.9.1
 Flask_Script==2.0.6
-Flask==1.0.2
+Flask==2.2.5
 itsdangerous==0.24
 Pillow==5.2.0
 unicode_slugify==0.1.3
